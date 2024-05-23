@@ -10,7 +10,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -25,6 +28,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -50,21 +55,27 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App() {
     var name by remember { mutableStateOf("") }
+    var cpf by remember { mutableStateOf("") }
+    var cep by remember { mutableStateOf("") }
+    var tel by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
     Column(
         Modifier
-            .background(Color.Black)
+            .background(Color(23, 23, 23))
             .fillMaxWidth()
     ) {
         Row(
             Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .background(Color(23, 23, 23)),
             Arrangement.Center
         ){
             Text(
                 text = "App Formulário",
-                fontFamily = FontFamily.Cursive,
+                fontFamily = FontFamily.SansSerif,
                 fontSize = 30.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = Color.White
             )
         }
         Row(
@@ -83,7 +94,12 @@ fun App() {
                 value = name,
                 onValueChange = {name = it},
                 // O it recebe no tempo exato o que o usuário está fazendo e atribui a name
-                label = { Text("Nome:")}
+                label = { Text("Nome completo:")},
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    // Serve para quando der o enter ele ir para o próximo campo
+                    imeAction = ImeAction.Next
+                )
             )
         }
         Row(
@@ -98,9 +114,92 @@ fun App() {
                 .fillMaxWidth(),
             Arrangement.Center
         ) {
-            Button(onClick = { /*TODO*/ }) {
+            TextField(
+                value = cpf,
+                onValueChange = {cpf = it},
+                // O it recebe no tempo exato o que o usuário está fazendo e atribui a name
+                label = { Text("CPF:")},
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Number,
+                    // Serve para quando der o enter ele ir para o próximo campo
+                    imeAction = ImeAction.Next
+                )
+            )
+        }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(20.dp)
+        ) {
+
+        }
+        Row(
+            Modifier
+                .fillMaxWidth(),
+            Arrangement.Center
+        ) {
+            TextField(
+                value = cep,
+                onValueChange = {cep = it},
+                // O it recebe no tempo exato o que o usuário está fazendo e atribui a name
+                label = { Text("CEP:")}
+            )
+        }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(20.dp)
+        ) {
+
+        }
+        Row(
+            Modifier
+                .fillMaxWidth(),
+            Arrangement.Center
+        ) {
+            TextField(
+                value = tel,
+                onValueChange = {tel = it},
+                // O it recebe no tempo exato o que o usuário está fazendo e atribui a name
+                label = { Text("Telefone:")}
+            )
+        }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(20.dp)
+        ) {
+
+        }
+        Row(
+            Modifier
+                .fillMaxWidth(),
+            Arrangement.Center
+        ) {
+            TextField(
+                value = password,
+                onValueChange = {password = it},
+                // O it recebe no tempo exato o que o usuário está fazendo e atribui a name
+                label = { Text("Senha:")}
+            )
+        }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(20.dp)
+        ) {
+
+        }
+        Row(
+            Modifier
+                .fillMaxWidth(),
+            Arrangement.Center
+        ) {
+            Button(
+                onClick = { /*TODO*/ },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(255, 199, 69), contentColor = Color.Black)
+            ) {
                 Text(text = "Cadastrar")
-                Color.Gray
             }
         }
     }
